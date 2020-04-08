@@ -1,0 +1,63 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "consistent-return": "off",
+    "comma-dangle": "off",
+    "no-use-before-define": "off",
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": [
+          "electron"
+        ]
+      }
+    ],
+    "import/no-extraneous-dependencies": "off",
+    "react/jsx-no-bind": "off",
+    "promise/param-names": 2,
+    "promise/always-return": 2,
+    "promise/catch-or-return": 2,
+    "promise/no-native": 0,
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "generator-star-spacing": "off",
+    "new-cap": 0,
+    "class-methods-use-this": 0,
+    "react/destructuring-assignment": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "no-unused-vars": 1,
+    "react/no-unused-prop-types": 1,
+    "arrow-body-style": 1,
+    "arrow-parens": 1,
+    "import/prefer-default-export": 1,
+    "react/prefer-stateless-function": 1,
+    "react/jsx-indent": 1,
+    "max-len": ['error', 170, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": false,
+      "ignoreRegExpLiterals": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true
+    }],
+  },
+  "plugins": [
+    "import",
+    "promise",
+    "react",
+    "react-hooks"
+  ]
+}

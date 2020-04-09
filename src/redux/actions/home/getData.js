@@ -2,11 +2,16 @@ import axios from 'axios';
 
 import TYPE from '../../types/home';
 
-export const getData = ({ filterBy = 'search', pageNo = 0 }) => async (dispatch) => {
+export const getData = ({ filterBy = 'search', pageNo = 0, ...rest }) => async (dispatch) => {
   dispatch({ type: TYPE.REQ_DATA });
 
+  let url = `http://hn.algolia.com/api/v1/${filterBy}?page=${pageNo}`;
+  if (rest) {
+    url = `http://hn.algolia.com/api/v1/${filterBy}?page=${pageNo}&numericFilters=points>0`;
+  }
+
   try {
-    const res = await axios.get(`http://hn.algolia.com/api/v1/${filterBy}?page=${pageNo}`);
+    const res = await axios.get(url);
     dispatch({
       type: TYPE.RES_DATA,
       data: res.data.hits,

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable react/prop-types */
 import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -14,7 +15,7 @@ const Home = (props) => {
   const homeData = useSelector((state) => state.home);
   const dispatch = useDispatch();
 
-  const [flag, setFlag] = useState(true);
+  let [flag, setFlag] = useState(true);
   const { history } = props;
 
   useEffect(() => {
@@ -50,7 +51,9 @@ const Home = (props) => {
         {item.created_at && <span className="time-stamp"> {timeSince(new Date(item.created_at))}</span>}
       </td>
       <td>
-        <span className="time-stamp">[</span><button type="button" className="point-button" onClick={() => dispatch(removeFeed(item.objectID))}>hide</button><span className="time-stamp">]</span>
+        <span className="time-stamp">[</span>
+        <button type="button" className="point-button" onClick={() => dispatch(removeFeed(item.objectID))}>hide</button>
+        <span className="time-stamp">]</span>
       </td>
     </tr>
   ));
@@ -71,10 +74,15 @@ const Home = (props) => {
                         className="point-button"
                         type="button"
                         onClick={() => {
+                          const query = getQuery(location);
                           // eslint-disable-next-line react/prop-types
-                          setFlag(!flag);
-                          history.push({ search: '?filterBy=search&numericFilters=points>0' });
-                          dispatch(getData(getQuery(location)));
+                          let pageNo = 1;
+                          if (Object.prototype.hasOwnProperty.call(query, 'pageNo')) {
+                            pageNo = parseInt(query.pageNo, 10) + 1;
+                          }
+                          history.push({ search: `?filterBy=search&pageNo=${pageNo}&numericFilters=points>0` });
+                          setFlag(flag = true);
+                          dispatch(getData({ filterBy: 'search', pageNo, numericFilters: 'points>0' }));
                         }}
                         disabled={flag}
                       >top
@@ -86,10 +94,15 @@ const Home = (props) => {
                         className="point-button"
                         type="button"
                         onClick={() => {
+                          const query = getQuery(location);
                           // eslint-disable-next-line react/prop-types
-                          setFlag(!flag);
-                          history.push({ search: '?filterBy=search_by_date' });
-                          dispatch(getData(getQuery(location)));
+                          let pageNo = 1;
+                          if (Object.prototype.hasOwnProperty.call(query, 'pageNo')) {
+                            pageNo = parseInt(query.pageNo, 10) + 1;
+                          }
+                          history.push({ search: `?filterBy=search_by_date&pageNo=${pageNo}` });
+                          setFlag(flag = false);
+                          dispatch(getData({ filterBy: 'search_by_date', pageNo }));
                         }}
                         disabled={!flag}
                       >new
@@ -105,9 +118,15 @@ const Home = (props) => {
             <tr>
               <td colSpan="8">
                 <ul>
-                  <li><span className="time-stamp">Filter By: </span>{getQuery(location) === 'search_by_date' ? 'Latest' : 'Top Points'}</li>
+                  <li>
+                    <span className="time-stamp">Filter By: </span>
+                    {getQuery(location).filterBy === 'search_by_date' ? 'Latest' : 'Top Points'}
+                  </li>
                   <li className="p-l-2">|</li>
-                  <li className="p-l-2"><span className="time-stamp">Page No: </span>{getQuery(location).pageNo ? (+getQuery(location).pageNo + 1) : 1}</li>
+                  <li className="p-l-2">
+                    <span className="time-stamp">Page No: </span>
+                    {getQuery(location).pageNo ? (+getQuery(location).pageNo + 1) : 1}
+                  </li>
                   <li className="p-l-4">{/* eslint-disable-next-line */}
                     <a href="#" onClick={() => {
                       const query = getQuery(location);
@@ -115,11 +134,13 @@ const Home = (props) => {
                       if (Object.prototype.hasOwnProperty.call(query, 'pageNo')) {
                         pageNo = parseInt(query.pageNo, 10) + 1;
                       }
-                      if (Object.prototype.hasOwnProperty.call(query, 'filterBy')) {
-                        history.push({ search: `?filterBy=${query.filterBy}&pageNo=${pageNo}` });
+                      if (Object.prototype.hasOwnProperty.call(query, 'filterBy') && query.filterBy === 'search_by_date') {
+                        history.push({ search: `?filterBy=search_by_date&pageNo=${pageNo}` });
+                        dispatch(getData({ filterBy: 'search_by_date', pageNo }));
+                      } else {
+                        history.push({ search: `?filterBy=search&pageNo=${pageNo}` });
+                        dispatch(getData({ filterBy: 'search', pageNo }));
                       }
-                      history.push({ search: `?filterBy=search&pageNo=${pageNo}` });
-                      dispatch(getData(getQuery(location)));
                     }}
                     >
                       More

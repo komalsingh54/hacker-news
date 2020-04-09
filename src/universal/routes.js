@@ -10,7 +10,7 @@ export const routes = [
     path: '/',
     exact: true,
     component: Home,
-    loadData: () => getData(),
+    loadData: (query) => getData(query),
   },
   {
     component: NotFound,

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import TYPE from '../../types/home';
 
-export const getData = (pageNo = 0, filterBy = 'search') => async (dispatch) => {
+export const getData = ({ filterBy = 'search', pageNo = 0 }) => async (dispatch) => {
   dispatch({ type: TYPE.REQ_DATA });
 
   try {

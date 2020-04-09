@@ -11,14 +11,15 @@ import createReduxStore from '../universal/createReduxStore';
 
 export default function handleRender(req, res) {
   const promises = [];
-
   const store = createReduxStore({ server: true });
 
   let matchedRoute;
 
   routes.some((route) => {
     matchedRoute = matchPath(req.path, route);
-    if (matchedRoute && route.loadData) promises.push(store.dispatch(route.loadData()));
+    if (matchedRoute && route.loadData) {
+      promises.push(store.dispatch(route.loadData(req.query)));
+    }
     return matchedRoute;
   });
 

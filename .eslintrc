@@ -43,7 +43,7 @@
     "react/jsx-indent": 1,
     "max-len": [
       "error",
-      170,
+      80,
       2,
       {
         "ignoreUrls": true,

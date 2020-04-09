@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/prefer-default-export
+
 export const timeSince = (date) => {
   const seconds = Math.floor((new Date() - date) / 1000);
 
@@ -28,4 +28,23 @@ export const timeSince = (date) => {
 
 export const getCachedItem = (type) => JSON.parse(localStorage.getItem(type));
 
-export const setIteminCache = (type, data) => localStorage.setItem(type, JSON.stringify(data));
+export const setIteminCache = (type, data) => localStorage.setItem(
+  type, JSON.stringify(data)
+);
+
+export const getQuery = (location) => {
+  const query = location.slice(1);
+  if (!query) return {};
+  const queryArray = query.split('&');
+  const queryObj = {};
+  if (queryArray.length === 0) return {};
+  // eslint-disable-next-line array-callback-return
+  queryArray.map((item) => {
+    const search = item.split('=');
+    if (search.length === 2) {
+    // eslint-disable-next-line prefer-destructuring
+      queryObj[search[0]] = search[1];
+    }
+  });
+  return queryObj;
+};

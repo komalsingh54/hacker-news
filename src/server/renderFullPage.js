@@ -1,3 +1,5 @@
+import serialize from 'serialize-javascript';
+
 export default function renderFullPage(html, preloadedState) {
   return `
     <!doctype html>
@@ -10,13 +12,13 @@ export default function renderFullPage(html, preloadedState) {
         <meta name="author" content="Komal">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         ${process.env.NODE_ENV === 'production' ? '<link rel="stylesheet" type="text/css" href="/dist/main.style.css" />' : ''}
-        <link rel="manifest" href="/public/manifest.json" />
+        <link rel="manifest" href="/manifest.json" />
       </head>
       <body>
         <div id="root">${html}</div>
         <script>
           // http://redux.js.org/recipes/ServerRendering.html#security-considerations
-          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+          window.__PRELOADED_STATE__ = ${serialize(preloadedState).replace(/</g, '\\u003c')}
         </script>
         <script src="/dist/main.bundle.js"></script>
       </body>

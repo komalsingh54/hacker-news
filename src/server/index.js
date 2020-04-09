@@ -1,5 +1,6 @@
 import express from 'express';
 import compression from 'compression';
+import cookieParser from 'cookie-parser';
 
 import handleRender from './handleRender';
 
@@ -9,9 +10,10 @@ const app = express();
 const port = 3000;
 
 app.use(compression());
+app.use(cookieParser());
 
 app.use('/dist', express.static('dist'));
-app.use('/public', express.static('public'));
+app.use('/', express.static('public'));
 
 app.use(handleRender);
 

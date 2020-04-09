@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import '@babel/polyfill';
 import React from 'react';
 import { hydrate } from 'react-dom';
@@ -8,9 +9,9 @@ import Router from '../universal/routes';
 import createReduxStore from '../universal/createReduxStore';
 import { register } from './ServiceWorker';
 
-const preloadedState = window.__PRELOADED_STATE__; // eslint-disable-line no-underscore-dangle
+const preloadedState = window.__PRELOADED_STATE__;
 
-delete window.__PRELOADED_STATE__; // eslint-disable-line no-underscore-dangle
+delete window.__PRELOADED_STATE__;
 
 const store = createReduxStore({ preloadedState });
 

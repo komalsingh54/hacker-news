@@ -2,10 +2,8 @@ import React from 'react';
 import { Switch, Route } from 'react-router';
 import App from '../components/app';
 import Home from '../components/home';
-import About from '../components/about';
 import NotFound from '../components/not-found/NotFound';
 import { getData } from '../redux/actions/home';
-import { getAboutData } from '../redux/actions/about';
 
 export const routes = [
   {
@@ -13,12 +11,6 @@ export const routes = [
     exact: true,
     component: Home,
     loadData: () => getData(),
-  },
-  {
-    path: '/about',
-    exact: true,
-    component: About,
-    loadData: () => getAboutData(),
   },
   {
     component: NotFound,

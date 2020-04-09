@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 
 import Router from '../universal/routes';
 import createReduxStore from '../universal/createReduxStore';
+import { register } from './ServiceWorker';
 
 const preloadedState = window.__PRELOADED_STATE__; // eslint-disable-line no-underscore-dangle
 
@@ -21,3 +22,5 @@ hydrate(
   </Provider>,
   document.getElementById('root')
 );
+
+register();

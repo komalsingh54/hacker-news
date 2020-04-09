@@ -1,4 +1,5 @@
 import TYPE from '../types/home';
+import { getCachedItem, setIteminCache } from '../../helper/utility';
 
 export default function (state = null, action) {
   switch (action.type) {
@@ -15,9 +16,10 @@ export default function (state = null, action) {
 
 function resData(state, action) {
   const { data } = action;
-  if (state) {
-    return [...state, ...data];
-  }
+  console.log('*********************', process.env.IS_HN_SERVICE_ENABLED);
+  data.map((feed) => {
+
+  })
   return data;
 }
 
@@ -30,7 +32,16 @@ function upvoteFeed(state, action) {
   const { objectID } = action;
   return state.map((feed) => {
     if (feed.objectID === objectID) {
-      return { ...feed, points: feed.points + 1 };
+      const upvotes = getCachedItem('upVotes');
+
+      if (upvotes) {
+        upvotes.push({ objectID, points: feed.points + 1, hasVoted: true });
+        setIteminCache('upVotes', upvotes);
+      } else {
+        setIteminCache('upVotes', [{ objectID, points: feed.points + 1, hasVoted: true }]);
+      }
+
+      return { ...feed, points: feed.points + 1, hasVoted: true };
     }
     return feed;
   });

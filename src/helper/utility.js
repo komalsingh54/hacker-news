@@ -25,3 +25,7 @@ export const timeSince = (date) => {
   }
   return `${Math.floor(seconds)} seconds ago`;
 };
+
+export const getCachedItem = (type) => JSON.parse(localStorage.getItem(type));
+
+export const setIteminCache = (type, data) => localStorage.setItem(type, JSON.stringify(data));

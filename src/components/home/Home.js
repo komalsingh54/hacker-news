@@ -19,11 +19,19 @@ const Home = () => {
       <td>{item.num_comments}</td>
       <td>{item.points}</td>
       <td>
-        <span
+        <button
           type="button"
-          className="caret"
-          onClick={() => dispatch(upvoteFeed(item.objectID))}
-        />
+          onClick={() => {
+            if (item.hasVoted) {
+              // eslint-disable-next-line no-alert
+              alert('You already Voted for this');
+            } else {
+              dispatch(upvoteFeed(item.objectID));
+            }
+          }
+        }
+        ><span className="caret" />
+        </button>
       </td>
       <td>{item.title}</td>
       <td>{item.url && <a href={item.url}>({url.parse(item.url).hostname})</a>}</td>

@@ -7,19 +7,23 @@ import NotFound from '../components/not-found/NotFound';
 import { getData } from '../redux/actions/home';
 import { getAboutData } from '../redux/actions/about';
 
-export const routes = [{
-  path: '/',
-  exact: true,
-  component: Home,
-  loadData: () => getData()
-}, {
-  path: '/about',
-  exact: true,
-  component: About,
-  loadData: () => getAboutData()
-}, {
-  component: NotFound
-}];
+export const routes = [
+  {
+    path: '/',
+    exact: true,
+    component: Home,
+    loadData: () => getData(),
+  },
+  {
+    path: '/about',
+    exact: true,
+    component: About,
+    loadData: () => getAboutData(),
+  },
+  {
+    component: NotFound,
+  },
+];
 
 export default function Router() {
   return (

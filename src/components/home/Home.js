@@ -6,10 +6,10 @@ import './Home.scss';
 import { getData, removeFeed, upvoteFeed } from '../../redux/actions/home';
 import { timeSince } from '../../helper/utility';
 
-
 const Home = () => {
   const homeData = useSelector((state) => state.home);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (!homeData) dispatch(getData());
   }, [dispatch, homeData]);
@@ -18,37 +18,42 @@ const Home = () => {
     <tr key={item.objectID}>
       <td>{item.num_comments}</td>
       <td>{item.points}</td>
-      <td><span type="button" className="caret" onClick={() => dispatch(upvoteFeed(item.objectID))} /></td>
-      <td>{item.title}</td>
       <td>
-        {item.url && (
-        <a href={item.url}>
-          (
-          {url.parse(item.url).hostname}
-          )
-        </a>
-        )}
+        <span
+          type="button"
+          className="caret"
+          onClick={() => dispatch(upvoteFeed(item.objectID))}
+        />
       </td>
+      <td>{item.title}</td>
+      <td>{item.url && <a href={item.url}>({url.parse(item.url).hostname})</a>}</td>
       <td>{item.author ? `by ${item.author}` : ''}</td>
       <td>{item.created_at && timeSince(new Date(item.created_at))}</td>
       <td>
-        [
-        <button type="button" onClick={() => dispatch(removeFeed(item.objectID))}>hide</button>
-        ]
+        [<a onClick={() => dispatch(removeFeed(item.objectID))}>hide</a>]
       </td>
     </tr>
   ));
   if (homeData) {
     return (
-      <div className="row">
-        <table className="table table-striped table-sm">
-          <thead><tr><td>Hacker news</td></tr></thead>
+      <div className="col-8">
+        <table className="table">
+          <thead className="thead">
+            <tr>
+              <td colSpan="3">Hacker news</td>
+              <td>Top</td>
+              <td>New</td>
+              <td colSpan="5" />
+            </tr>
+          </thead>
           <tbody>
             {renderNews(homeData)}
             <tr>
               <td>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a href="#" onClick={() => dispatch(getData(1))}>More</a>
+                <a href="#" onClick={() => dispatch(getData(1))}>
+                  More
+                </a>
               </td>
             </tr>
           </tbody>
@@ -56,7 +61,7 @@ const Home = () => {
       </div>
     );
   }
-  return 'Loading.........';
+  return <div id="loader" />;
 };
 
 export default Home;

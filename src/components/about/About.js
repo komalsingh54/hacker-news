@@ -13,8 +13,17 @@ const About = () => {
   return (
     <>
       {a.text}
-      <button type="button" onClick={() => setCount(count + 1)}>Click me</button>
-      <button type="button" onClick={() => { dispatch(getAboutData('Hi Komal')); }}>Komal</button>
+      <button type="button" onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          dispatch(getAboutData('Hi Komal'));
+        }}
+      >
+        Komal
+      </button>
     </>
   );
 };

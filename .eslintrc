@@ -12,9 +12,7 @@
     "import/no-unresolved": [
       "error",
       {
-        "ignore": [
-          "electron"
-        ]
+        "ignore": ["electron"]
       }
     ],
     "import/no-extraneous-dependencies": "off",
@@ -26,10 +24,7 @@
     "react/jsx-filename-extension": [
       "error",
       {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx"]
       }
     ],
     "react-hooks/rules-of-hooks": "error",
@@ -46,18 +41,18 @@
     "import/prefer-default-export": 1,
     "react/prefer-stateless-function": 1,
     "react/jsx-indent": 1,
-    "max-len": ['error', 170, 2, {
-      "ignoreUrls": true,
-      "ignoreComments": false,
-      "ignoreRegExpLiterals": true,
-      "ignoreStrings": true,
-      "ignoreTemplateLiterals": true
-    }],
+    "max-len": [
+      "error",
+      170,
+      2,
+      {
+        "ignoreUrls": true,
+        "ignoreComments": false,
+        "ignoreRegExpLiterals": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ]
   },
-  "plugins": [
-    "import",
-    "promise",
-    "react",
-    "react-hooks"
-  ]
+  "plugins": ["import", "promise", "react", "react-hooks"]
 }

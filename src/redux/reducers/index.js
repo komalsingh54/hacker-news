@@ -4,7 +4,7 @@ import about from './about';
 
 const reduxState = combineReducers({
   home,
-  about
+  about,
 });
 
 export default reduxState;

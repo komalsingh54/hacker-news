@@ -21,7 +21,8 @@ export default function handleRender(req, res) {
   });
 
   return Promise.all(promises).then(() => {
-    const html = renderToString( // eslint-disable-line
+    const html = renderToString(
+      // eslint-disable-line
       <Provider store={store}>
         <StaticRouter location={req.url} context={{}}>
           <Router />

@@ -7,7 +7,7 @@ export default function getData(value) {
     return new Promise((resolve) => {
       dispatch({
         type: TYPE.RES_DATA,
-        data: { text: value || 'This is some text for the ABOUT page fetched asynchronously' }
+        data: { text: value || 'This is some text for the ABOUT page fetched asynchronously' },
       });
       return resolve();
     });

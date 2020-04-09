@@ -2,10 +2,14 @@ import TYPE from '../types/home';
 
 export default function (state = null, action) {
   switch (action.type) {
-    case TYPE.RES_DATA: return resData(state, action);
-    case TYPE.REMOVE_FEED: return removeFeed(state, action);
-    case TYPE.UPVOTE_FEED: return upvoteFeed(state, action);
-    default: return state;
+    case TYPE.RES_DATA:
+      return resData(state, action);
+    case TYPE.REMOVE_FEED:
+      return removeFeed(state, action);
+    case TYPE.UPVOTE_FEED:
+      return upvoteFeed(state, action);
+    default:
+      return state;
   }
 }
 

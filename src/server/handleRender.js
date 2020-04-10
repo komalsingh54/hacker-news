@@ -4,7 +4,6 @@ import { matchPath } from 'react-router-dom';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
 
-
 import Router, { routes } from '../universal/routes';
 import renderFullPage from './renderFullPage';
 import createReduxStore from '../universal/createReduxStore';

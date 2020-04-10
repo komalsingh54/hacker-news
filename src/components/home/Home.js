@@ -8,7 +8,6 @@ import url from 'url';
 import { getData, removeFeed, upvoteFeed } from '../../redux/actions/home';
 import { timeSince, getQuery } from '../../helper/utility';
 
-
 const Home = (props) => {
   const location = useLocation().search;
   const homeData = useSelector((state) => state.home);
@@ -37,26 +36,41 @@ const Home = (props) => {
               dispatch(upvoteFeed(item.objectID));
             }
           }}
-        ><span className="caret" />
+        >
+          <span className="caret" />
         </button>
       </td>
-      <td>{item.title || item.story_title} {item.url
-        && (
-          <a href={item.url}>
-            ({item.url ? url.parse(item.url).hostname
-            : url.parse(item.story_url).hostname})
-          </a>
-        )} {item.author && (<><span className="author-color">by</span><span>{' '}{item.author}</span></>)}
-        {item.created_at && <span className="time-stamp"> {timeSince(new Date(item.created_at))}</span>}
+      <td>
+        {item.title || item.story_title}{' '}
+        {item.url && (
+        <a href={item.url}>
+          ({item.url ? url.parse(item.url).hostname
+          : url.parse(item.story_url).hostname})
+        </a>
+        )}{' '}
+        {item.author && (
+        <>
+          <span className="author-color">by</span>
+          <span> {item.author}</span>
+        </>
+        )}
+        {item.created_at && (
+        <span className="time-stamp"> {timeSince(new Date(item.created_at))}</span>
+        )}
       </td>
       <td>
         <span className="time-stamp">[</span>
-        <button type="button" className="point-button" onClick={() => dispatch(removeFeed(item.objectID))}>hide</button>
+        <button
+          type="button"
+          className="point-button"
+          onClick={() => dispatch(removeFeed(item.objectID))}
+        >
+          hide
+        </button>
         <span className="time-stamp">]</span>
       </td>
     </tr>
   ));
-
 
   if (homeData) {
     return (
@@ -67,7 +81,9 @@ const Home = (props) => {
               <td colSpan="5">
                 <div className="bg-red">
                   <ul>
-                    <li><img src="favicon.ico" alt="logo" /></li>
+                    <li>
+                      <img src="favicon.ico" alt="logo" />
+                    </li>
                     <li>
                       <button
                         className="point-button"
@@ -79,12 +95,17 @@ const Home = (props) => {
                           if (Object.prototype.hasOwnProperty.call(query, 'pageNo')) {
                             pageNo = parseInt(query.pageNo, 10) + 1;
                           }
-                          history.push({ search: `?filterBy=search&pageNo=${pageNo}&numericFilters=points>0` });
-                          setFlag(flag = true);
-                          dispatch(getData({ filterBy: 'search', pageNo, numericFilters: 'points>0' }));
+                          history.push({
+                            search: `?filterBy=search&pageNo=${pageNo}&numericFilters=points>0`,
+                          });
+                          setFlag((flag = true));
+                          dispatch(
+                            getData({ filterBy: 'search', pageNo, numericFilters: 'points>0' })
+                          );
                         }}
                         disabled={flag}
-                      >top
+                      >
+                        top
                       </button>
                     </li>
                     <li>|</li>
@@ -100,11 +121,12 @@ const Home = (props) => {
                             pageNo = parseInt(query.pageNo, 10) + 1;
                           }
                           history.push({ search: `?filterBy=search_by_date&pageNo=${pageNo}` });
-                          setFlag(flag = false);
+                          setFlag((flag = false));
                           dispatch(getData({ filterBy: 'search_by_date', pageNo }));
                         }}
                         disabled={!flag}
-                      >new
+                      >
+                        new
                       </button>
                     </li>
                   </ul>
@@ -124,23 +146,30 @@ const Home = (props) => {
                   <li className="p-l-2">|</li>
                   <li className="p-l-2">
                     <span className="time-stamp">Page No: </span>
-                    {getQuery(location).pageNo ? (+getQuery(location).pageNo + 1) : 1}
+                    {getQuery(location).pageNo
+                      ? +getQuery(location).pageNo + 1 : 1}
                   </li>
-                  <li className="p-l-4">{/* eslint-disable-next-line */}
-                    <a href="#" onClick={() => {
-                      const query = getQuery(location);
-                      let pageNo = 1;
-                      if (Object.prototype.hasOwnProperty.call(query, 'pageNo')) {
-                        pageNo = parseInt(query.pageNo, 10) + 1;
-                      }
-                      if (Object.prototype.hasOwnProperty.call(query, 'filterBy') && query.filterBy === 'search_by_date') {
-                        history.push({ search: `?filterBy=search_by_date&pageNo=${pageNo}` });
-                        dispatch(getData({ filterBy: 'search_by_date', pageNo }));
-                      } else {
-                        history.push({ search: `?filterBy=search&pageNo=${pageNo}` });
-                        dispatch(getData({ filterBy: 'search', pageNo }));
-                      }
-                    }}
+                  <li className="p-l-4">
+                    {/* eslint-disable-next-line */}
+                    <a
+                      href="#"
+                      onClick={() => {
+                        const query = getQuery(location);
+                        let pageNo = 1;
+                        if (Object.prototype.hasOwnProperty.call(query, 'pageNo')) {
+                          pageNo = parseInt(query.pageNo, 10) + 1;
+                        }
+                        if (
+                          Object.prototype.hasOwnProperty.call(query, 'filterBy')
+                          && query.filterBy === 'search_by_date'
+                        ) {
+                          history.push({ search: `?filterBy=search_by_date&pageNo=${pageNo}` });
+                          dispatch(getData({ filterBy: 'search_by_date', pageNo }));
+                        } else {
+                          history.push({ search: `?filterBy=search&pageNo=${pageNo}` });
+                          dispatch(getData({ filterBy: 'search', pageNo }));
+                        }
+                      }}
                     >
                       More
                     </a>

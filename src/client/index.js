@@ -2,7 +2,7 @@
 import '@babel/polyfill';
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
-import 'core-js/stable'
+import 'core-js/stable';
 
 import React from 'react';
 import { hydrate } from 'react-dom';

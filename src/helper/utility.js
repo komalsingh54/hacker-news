@@ -1,4 +1,3 @@
-
 export const timeSince = (date) => {
   const seconds = Math.floor((new Date() - date) / 1000);
 
@@ -42,7 +41,7 @@ export const getQuery = (location) => {
   queryArray.map((item) => {
     const search = item.split('=');
     if (search.length === 2) {
-    // eslint-disable-next-line prefer-destructuring
+      // eslint-disable-next-line prefer-destructuring
       queryObj[search[0]] = search[1];
     }
   });

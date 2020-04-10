@@ -44,7 +44,7 @@ const NewsFeed = (props) => {
         </button>
       </td>
       <td>
-        {item.title || item.story_title}{' '}
+        {item.title || item.story_title || '[Title not available]'}{' '}
         {item.url && (
         <a href={item.url}>
           ({item.url ? url.parse(item.url).hostname

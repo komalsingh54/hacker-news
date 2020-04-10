@@ -3,14 +3,14 @@ import { Switch, Route } from 'react-router';
 import App from '../components/app';
 import Home from '../components/home';
 import NotFound from '../components/not-found/NotFound';
-import { getData } from '../redux/actions/home';
+import { getFeeds } from '../redux/actions/home';
 
 export const routes = [
   {
     path: '/',
     exact: true,
     component: Home,
-    loadData: (query) => getData(query),
+    loadData: (query) => getFeeds(query),
   },
   {
     component: NotFound,

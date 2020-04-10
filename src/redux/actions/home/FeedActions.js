@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import TYPE from '../../types/home';
 
-export const getData = ({ filterBy = 'search', pageNo = 0, numericFilters }) => async (
+export const getFeeds = ({ filterBy = 'search', pageNo = 0 }) => async (
   dispatch
 ) => {
   dispatch({ type: TYPE.REQ_DATA });
@@ -11,10 +11,12 @@ export const getData = ({ filterBy = 'search', pageNo = 0, numericFilters }) => 
 
   try {
     const res = await axios.get(url);
+
     dispatch({
       type: TYPE.RES_DATA,
       data: res.data.hits,
     });
+
     return res;
   } catch (err) {
     // eslint-disable-next-line no-console

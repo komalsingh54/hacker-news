@@ -112,7 +112,7 @@ In the React components, any asynchronous data is fetched in `componentDidMount`
 ```javascript
 componentDidMount() {
   // only fetch the data if there is no data
-  if (!this.props.data) this.props.getData();
+  if (!this.props.data) this.props.getFeeds();
 }
 ```
 

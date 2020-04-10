@@ -8,10 +8,10 @@
     "dev-server": "cross-env BABEL_ENV=server NODE_ENV=development nodemon ./src/server/index.js --exec babel-node --ignore dist/ -e js,scss,css",
     "dev-client": "cross-env NODE_ENV=development webpack --config ./webpack.config.dev.js",
     "dev": "concurrently \"cross-env NODE_ENV=development npm run dev-server\" \"cross-env NODE_ENV=development npm run dev-client\"",
-    "prod-server": "IS_HN_SERVICE_ENABLED=false BABEL_ENV=server NODE_ENV=production babel src --out-dir ./dist",
-    "prod-client": "IS_HN_SERVICE_ENABLED=false NODE_ENV=production webpack --config ./webpack.config.prod.js",
+    "prod-server": "cross-env IS_HN_SERVICE_ENABLED=false BABEL_ENV=server NODE_ENV=production babel src --out-dir ./dist",
+    "prod-client": "cross-env IS_HN_SERVICE_ENABLED=false NODE_ENV=production webpack --config ./webpack.config.prod.js",
     "build": "npm run clean && npm run prod-server && npm run prod-client",
-    "start": "IS_HN_SERVICE_ENABLED=false NODE_ENV=production node ./dist/server/index.js",
+    "start": "cross-env IS_HN_SERVICE_ENABLED=false NODE_ENV=production node ./dist/server/index.js",
     "prettier:check": "prettier --check .",
     "prettier:format": "prettier --write ."
   },
@@ -23,16 +23,7 @@
   },
   "homepage": "https://github.com/komalsingh54/react-ssr",
   "keywords": [
-    "react",
-    "isomorphic",
-    "universal",
-    "webpack",
-    "express",
-    "redux",
-    "boilerplate",
-    "babel",
-    "express",
-    "react-router"
+    "hacker news"
   ],
   "dependencies": {
     "@babel/plugin-transform-spread": "^7.8.3",

@@ -1,9 +1,30 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import AlertComponent from '../AlertComponent/AlertComponent';
 
 const App = (props) => {
   // eslint-disable-next-line react/prop-types
   const { children } = props;
-  return <div className="container"><heading />{children}</div>;
+  const hasError = useSelector((state) => state.error);
+
+  const [shouldAlert, setShouldAlert] = useState(hasError);
+  const [alertMessage, setAlertMessage] = useState('');
+
+
+  return (
+    <div className="container"><heading />
+      <AlertComponent
+        message="Something went wrong"
+        shouldAlert={shouldAlert}
+        onClose={() => {
+          setAlertMessage('');
+          setShouldAlert(false);
+        }}
+      />{children}
+    </div>
+  );
 };
 
 export default App;

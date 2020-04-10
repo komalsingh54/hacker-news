@@ -1,9 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
+
 import App from '../components/app';
 import Home from '../components/home';
 import NotFound from '../components/not-found/NotFound';
 import { getFeeds } from '../redux/actions/home';
+import TechErrorComponent from '../components/TechError/TechErrorComponent';
 
 export const routes = [
   {
@@ -11,6 +13,10 @@ export const routes = [
     exact: true,
     component: Home,
     loadData: (query) => getFeeds(query),
+  },
+  {
+    path: '/tech-error',
+    component: TechErrorComponent,
   },
   {
     component: NotFound,

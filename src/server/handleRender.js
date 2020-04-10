@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { matchPath } from 'react-router-dom';
@@ -37,5 +38,6 @@ export default function handleRender(req, res) {
     return res
       .status(matchedRoute && matchedRoute.isExact ? 200 : 404)
       .send(renderFullPage(html, preloadedState));
-  });
+  })
+    .catch((err) => console.log('ERR', err));
 }

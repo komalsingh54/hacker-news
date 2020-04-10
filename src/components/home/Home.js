@@ -22,12 +22,12 @@ const Home = (props) => {
 
   const renderNews = (news) => news.map((item) => (<NewsFeed item={item} />));
 
-  if (homeData) {
+  if (homeData && Array.isArray(homeData)) {
     return (
       <div className="col-8 col-offset-3">
         <table className="table">
           <thead className="thead">
-            <HeaderComponent />
+            <HeaderComponent history={history} />
           </thead>
           <tbody>
             {renderNews(homeData)}
@@ -36,6 +36,9 @@ const Home = (props) => {
         </table>
       </div>
     );
+  }
+  if (homeData) {
+    history.push('/tech-error');
   }
   return <div id="loader" />;
 };

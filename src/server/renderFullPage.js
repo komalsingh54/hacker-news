@@ -21,6 +21,8 @@ export default function renderFullPage(html, preloadedState) {
           window.__PRELOADED_STATE__ = ${serialize(preloadedState).replace(/</g, '\\u003c')}
         </script>
         <script src="/dist/main.bundle.js"></script>
+        <script src="/dist/runtime~main.bundle.js"></script>
+        <script src="/dist/vendors~main.bundle.js"></script>
       </body>
     </html>
     `;

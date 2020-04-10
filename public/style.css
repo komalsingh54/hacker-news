@@ -411,3 +411,12 @@ ul {
     width: 70%;
   }
 }
+
+.home-btn {
+  color: white;
+  background: #262626;
+  border: 2px #262626;
+  border-style: double;
+  height: 40px;
+  width: 150px;
+}

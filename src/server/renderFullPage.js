@@ -11,7 +11,7 @@ export default function renderFullPage(html, preloadedState) {
         <meta name="keywords" content="hacker news">
         <meta name="author" content="Komal">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        ${process.env.NODE_ENV === 'production' ? '<link rel="stylesheet" type="text/css" href="/dist/main.style.css" />' : ''}
+        ${process.env.NODE_ENV === 'production' ? '<link rel="stylesheet" type="text/css" href="style.css" />' : ''}
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body>

@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import url from 'url';
 
-import './Home.scss';
 import { getData, removeFeed, upvoteFeed } from '../../redux/actions/home';
 import { timeSince, getQuery } from '../../helper/utility';
 

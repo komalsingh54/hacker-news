@@ -7,10 +7,7 @@ export const getData = ({ filterBy = 'search', pageNo = 0, numericFilters }) => 
 ) => {
   dispatch({ type: TYPE.REQ_DATA });
 
-  let url = `http://hn.algolia.com/api/v1/${filterBy}?page=${pageNo}`;
-  if (numericFilters) {
-    url = `http://hn.algolia.com/api/v1/${filterBy}?page=${pageNo}&numericFilters=points>0`;
-  }
+  const url = `http://hn.algolia.com/api/v1/${filterBy}?page=${pageNo}&numericFilters=points>0`;
 
   try {
     const res = await axios.get(url);

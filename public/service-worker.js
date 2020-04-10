@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable promise/always-return */
 /* eslint-disable promise/catch-or-return */
@@ -77,8 +78,9 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
-      registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
+      const registers = registration;
+      registers.onupdatefound = () => {
+        const installingWorker = registers.installing;
         if (installingWorker == null) {
           return;
         }
@@ -95,7 +97,7 @@ function registerValidSW(swUrl, config) {
 
               // Execute callback
               if (config && config.onUpdate) {
-                config.onUpdate(registration);
+                config.onUpdate(registers);
               }
             } else {
               // At this point, everything has been precached.
@@ -105,7 +107,7 @@ function registerValidSW(swUrl, config) {
 
               // Execute callback
               if (config && config.onSuccess) {
-                config.onSuccess(registration);
+                config.onSuccess(registers);
               }
             }
           }
@@ -113,7 +115,7 @@ function registerValidSW(swUrl, config) {
       };
     })
     .catch((error) => {
-      console.error('Error during service worker registration:', error);
+      console.error('Error during service worker registers:', error);
     });
 }
 

@@ -21,6 +21,7 @@ export const getFeeds = ({ filterBy = 'search', pageNo = 0 }) => async (
 
     return res;
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.log(err);
     // eslint-disable-next-line no-console
     dispatch({

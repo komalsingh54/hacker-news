@@ -5,7 +5,7 @@ export default function renderFullPage(html, preloadedState) {
     <!doctype html>
     <html lang="en">
       <head>
-        <title>Redux Universal Example</title>
+        <title>Hacker News</title>
         <meta charset="UTF-8">
         <meta name="description" content="Hacker news">
         <meta name="keywords" content="hacker news">

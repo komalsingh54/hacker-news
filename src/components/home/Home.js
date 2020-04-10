@@ -26,6 +26,7 @@ const Home = (props) => {
       <td className="right p-l-1">{item.points ? item.points : '-'}</td>
       <td>
         <button
+          aria-label="upvote"
           type="button"
           className="point-button"
           onClick={() => {
@@ -62,6 +63,7 @@ const Home = (props) => {
         <span className="time-stamp">[</span>
         <button
           type="button"
+          aria-label="hide"
           className="point-button"
           onClick={() => dispatch(removeFeed(item.objectID))}
         >
@@ -86,6 +88,7 @@ const Home = (props) => {
                     </li>
                     <li>
                       <button
+                        aria-label="top"
                         className="point-button"
                         type="button"
                         onClick={() => {
@@ -111,6 +114,7 @@ const Home = (props) => {
                     <li>|</li>
                     <li>
                       <button
+                        aria-label="new"
                         className="point-button"
                         type="button"
                         onClick={() => {

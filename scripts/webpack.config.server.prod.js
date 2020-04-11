@@ -11,8 +11,8 @@ module.exports = {
     path: path.join(__dirname, '../dist/server'),
     filename: 'index.js'
   },
-  target: 'web',
-  // externals: [nodeExternals()],
+  target: 'node',
+  externals: [nodeExternals()],
   module: {
     rules: [
       {

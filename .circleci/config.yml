@@ -25,7 +25,7 @@ jobs:
       name: node/default
     environment:
         HEROKU_APP: "hacker-news-s"
-        HEROKU_APP_PROD: "hacker-new-p"
+        HEROKU_APP_PROD: "hacker-news-p"
     steps:
       - checkout
       - run: npm install

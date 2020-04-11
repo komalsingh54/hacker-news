@@ -18,10 +18,6 @@ app.use(cors());
 app.use('/dist', express.static('dist'));
 app.use('/', express.static('public'));
 
-app.use('/', (req, res, next) => {
-  console.log(req.url);
-  next();
-});
 
 app.use(handleRender);
 

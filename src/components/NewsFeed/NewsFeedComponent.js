@@ -66,7 +66,7 @@ const NewsFeed = (props) => {
         <button
           type="button"
           aria-label="hide"
-          className="point-button"
+          className="point-button no-padding"
           onClick={() => dispatch(removeFeed(item.objectID))}
         >
           hide

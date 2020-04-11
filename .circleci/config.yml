@@ -1,18 +1,87 @@
 version: 2.1
 orbs:
   heroku: circleci/heroku@0.0.10
+
 jobs:
-  build-and-test:
+
+  build:
     executor:
       name: node/default
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm test
-            - run: npm run build
+      - run: npm install
+      - run: npm run test
+      - run: npm run build
+
+  test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run test
+
+  deploy:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run test
+      - run: npm run build
+
+
+  syncBranch:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - run:
+          name: Sync Downstream
+          command: yarn rhinodeploy merge -c build:production
+
+
 workflows:
-  heroku_deploy:
+  version: 2
+
+  general:
     jobs:
-      - heroku/deploy-via-git
+      - test:
+          filters:
+            branches:
+              ignore:
+                - master
+                - develop
+
+  deployment:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - test:
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - heroku/deploy-via-git:
+          requires:
+            - build
+            - test
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      #- syncBranch:
+      #   requires:
+      #      - deploy
+      #    filters:
+      #      branches:
+      #        only:
+      #          - master
+      #          - staging
+      #          - develop

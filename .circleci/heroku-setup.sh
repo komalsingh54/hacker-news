@@ -14,4 +14,15 @@ EOF
 echo $CIRCLE_BRANCH
 echo $HEROKU_APP
 
+if [[ $CIRCLE_BRANCH -eq "master" ]]
+then
+  heroku git:remote -a $HEROKU_APP_PROD
+else
+  heroku git:remote -a $HEROKU_APP
+fi
+
 heroku git:remote -a $HEROKU_APP
+
+git push heroku master
+sleep 5 # sleep for 5 seconds to wait for dynos
+heroku restart

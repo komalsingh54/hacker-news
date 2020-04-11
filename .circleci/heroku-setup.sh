@@ -21,8 +21,6 @@ else
   heroku git:remote -a $HEROKU_APP
 fi
 
-heroku git:remote -a $HEROKU_APP
-
 git push heroku master
 sleep 5 # sleep for 5 seconds to wait for dynos
 heroku restart

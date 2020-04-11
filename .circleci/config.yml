@@ -28,6 +28,9 @@ jobs:
       - run: npm install
       - run: npm run test
       - run: npm run build
+      - run:
+          name: Deploy to Heroku
+          command: bash .circleci/heroku-setup.sh
 
 
   syncBranch:
@@ -66,7 +69,7 @@ workflows:
               only:
                 - master
                 - develop
-      - heroku/deploy-via-git:
+      - deploy:
           requires:
             - build
             - test

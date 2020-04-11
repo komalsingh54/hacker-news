@@ -20,6 +20,7 @@ Hacker News is a community started by Paul Graham for sharing "Anything that goo
 My goal is to provide a **well-tested, regularly maintained, easily configurable and adjustable this Project** with support for server side rendering that gives  a good basis to start own project on. As minimal as possible with as much functionality as necessary.
 
 
+[Screenshot](https://github.com/komalsingh54/Hacker-News/blob/develop/public/Capture.PNG?raw=true)
 
 ## Features
 

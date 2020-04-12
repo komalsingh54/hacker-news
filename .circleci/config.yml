@@ -23,6 +23,8 @@ jobs:
   deploy:
     executor:
       name: node/default
+    environment:
+        HEROKU_APP: "hacker-news-s"
     steps:
       - checkout
       - run: npm install

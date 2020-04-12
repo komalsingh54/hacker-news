@@ -5,7 +5,7 @@ import url from 'url';
 
 import AlertComponent from '../AlertComponent/AlertComponent';
 import { removeFeed, upvoteFeed } from '../../redux/actions/home';
-import { timeSince } from '../../helper/utility';
+import { timeSince, getColor } from '../../helper/utility';
 
 
 const NewsFeed = (props) => {
@@ -17,7 +17,7 @@ const NewsFeed = (props) => {
   return (
     <tr key={item.objectID}>
       <td className="right p-l-1">{item.num_comments ? item.num_comments : '-'}</td>
-      <td className="right p-l-1">{item.points ? item.points : '-'}</td>
+      <td className="right p-l-1" style={{ color: getColor(item.points) }}>{item.points ? item.points : '-'}</td>
       <td>
         <AlertComponent
           message={alertMessage}
@@ -66,7 +66,7 @@ const NewsFeed = (props) => {
         <button
           type="button"
           aria-label="hide"
-          className="point-button"
+          className="point-button no-padding"
           onClick={() => dispatch(removeFeed(item.objectID))}
         >
           hide

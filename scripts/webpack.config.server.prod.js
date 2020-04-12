@@ -12,16 +12,12 @@ module.exports = {
     filename: 'index.js'
   },
   target: 'node',
-  node: {
-    __dirname: false,
-    __filename: false,
-  },
   externals: [nodeExternals()],
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         use: 'babel-loader',
       },
       {

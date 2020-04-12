@@ -47,3 +47,18 @@ export const getQuery = (location) => {
   });
   return queryObj;
 };
+
+export const getColor = (perc) => {
+  let red;
+  let green;
+  const blue = 0;
+  if (perc < 50) {
+    red = 255;
+    green = Math.round(5.1 * perc);
+  } else {
+    green = 255;
+    red = Math.round(510 - 5.10 * perc);
+  }
+  const h = red * 0x10000 + green * 0x100 + blue * 0x1;
+  return `#${(`000000${h.toString(16)}`).slice(-6)}`;
+};

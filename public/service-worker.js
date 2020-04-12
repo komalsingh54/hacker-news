@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable promise/always-return */
 /* eslint-disable promise/catch-or-return */
@@ -38,7 +39,7 @@ const isLocalhost = Boolean(
     || window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
 );
 
-export function register(config) {
+function register(config) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
@@ -77,9 +78,9 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
-      // eslint-disable-next-line no-param-reassign
-      registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
+      const registers = registration;
+      registers.onupdatefound = () => {
+        const installingWorker = registers.installing;
         if (installingWorker == null) {
           return;
         }
@@ -96,7 +97,7 @@ function registerValidSW(swUrl, config) {
 
               // Execute callback
               if (config && config.onUpdate) {
-                config.onUpdate(registration);
+                config.onUpdate(registers);
               }
             } else {
               // At this point, everything has been precached.
@@ -106,7 +107,7 @@ function registerValidSW(swUrl, config) {
 
               // Execute callback
               if (config && config.onSuccess) {
-                config.onSuccess(registration);
+                config.onSuccess(registers);
               }
             }
           }
@@ -114,11 +115,11 @@ function registerValidSW(swUrl, config) {
       };
     })
     .catch((error) => {
-      console.error('Error during service worker registration:', error);
+      console.error('Error during service worker registers:', error);
     });
 }
 
-export function unregister() {
+function unregister() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready
       .then((registration) => {
@@ -129,3 +130,5 @@ export function unregister() {
       });
   }
 }
+
+// register();

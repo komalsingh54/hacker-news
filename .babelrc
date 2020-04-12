@@ -4,13 +4,20 @@
       "@babel/preset-env",
       {
         "targets": {
-          "node": "10"
+          // "node": "10",
+          "esmodules": true
         }
       }
     ],
     "@babel/preset-react"
   ],
-  "plugins": ["@babel/plugin-transform-spread", "@babel/plugin-proposal-object-rest-spread"],
+  "plugins": [
+    "@babel/plugin-transform-spread",
+    "@babel/plugin-proposal-object-rest-spread",
+    "transform-es2015-arrow-functions",
+    "@babel/plugin-transform-destructuring",
+    "@babel/plugin-proposal-async-generator-functions"
+  ],
   "env": {
     "server": {
       "plugins": [
@@ -19,7 +26,10 @@
           {
             "preprocessCss": "./loaders/sass-loader.js",
             "generateScopedName": "./loaders/scope-name.js",
-            "extensions": [".scss", ".css"]
+            "extensions": [
+              ".scss",
+              ".css"
+            ]
           }
         ]
       ]

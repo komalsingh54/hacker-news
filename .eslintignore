@@ -3,3 +3,5 @@ dist/
 /dist
 loaders
 node_modules
+
+*test*

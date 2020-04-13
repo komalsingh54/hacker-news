@@ -14,7 +14,7 @@ const App = (props) => {
 
 
   return (
-    <div className="container"><heading />
+    <div className="container m-t-0"><heading />
       <AlertComponent
         message="Something went wrong"
         shouldAlert={shouldAlert}

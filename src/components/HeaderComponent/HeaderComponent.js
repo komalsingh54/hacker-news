@@ -17,7 +17,7 @@ const HeaderComponent = (props) => {
 
   return (
     <tr>
-      <td colSpan="5">
+      <td colSpan="5" className="p-d-o">
         <div className="bg-red">
           <ul>
             <li>

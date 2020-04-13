@@ -62,16 +62,19 @@ const NewsFeed = (props) => {
         )}
       </td>
       <td>
-        <span className="time-stamp">[</span>
-        <button
-          type="button"
-          aria-label="hide"
-          className="point-button no-padding"
-          onClick={() => dispatch(removeFeed(item.objectID))}
-        >
-          hide
-        </button>
-        <span className="time-stamp">]</span>
+        <div className="inline-display">
+          <span className="time-stamp">[</span>
+          <button
+            type="button"
+            aria-label="hide"
+            className="point-button no-padding"
+            onClick={() => dispatch(removeFeed(item.objectID))}
+          >
+            hide
+          </button>
+          <span className="time-stamp">]</span>
+        </div>
+
       </td>
     </tr>
   );
